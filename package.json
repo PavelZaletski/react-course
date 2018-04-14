@@ -1,0 +1,20 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "scripts": {
+    "babel": "babel client/js/app.js --out-file public/app.js --source-maps inline",
+    "start": "npm run babel && node starter.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0"
+  }
+}
