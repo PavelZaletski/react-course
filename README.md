@@ -2,7 +2,7 @@
 
 * Load modules
 
-> npm sinstall
+> npm install
 
 * start project
 
