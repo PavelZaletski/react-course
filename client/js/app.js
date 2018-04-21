@@ -1,14 +1,8 @@
-const Content1 = () => (
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu lacinia tellus. Sed et quam risus. Phasellus sit amet </p>
-);
-
-class Content2 extends React.PureComponent {
-    render() {
-        return (
-            <p>Nulla rhoncus tempus erat nec facilisis. Duis quis purus ligula. Lorem ipsum dolor sit amet</p>
-        );
-    }
-}
+import React from 'react';
+import ReactDOM from 'react-dom';
+import '../less/style';
+import Content1 from './components/content1';
+import Content2 from './components/content2';
 
 class App extends React.Component {
     render() {
