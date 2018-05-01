@@ -33,3 +33,11 @@ I installed React, Redux, React-Redux, React-Router, Jest, webpack, webpack-dev-
 Configured webpack and babel. Added commands to package.json to run webpack for dev and prod environment. Also added command to run jest.
 
 Task finished on Apr, 21
+
+### Task 3
+
+I created components implementing required design and used ErrorBoundary to catch errors.
+
+Added components: search film form, display films, sort films by release date or by rating, etc
+
+Task finished on May, 1
