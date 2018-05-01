@@ -1,3 +1,240 @@
+@red: #F25264;
+@gray: #999;
+@gray2: #404040;
+@white: #fff;
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
 body {
     background: #eee;
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial';
+}
+label {
+    cursor: pointer;
+}
+
+.root {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+footer {
+    height: 40px;
+    padding: 10px 0 0 30px;
+    position: absolute;
+    bottom: 0;
+    background-color: @gray2;
+    width: 100%;
+    color: @red;
+}
+
+.top-container {
+    background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/80ffdc60-07ad-4e9e-829f-7969df93981c/c2de14ba-09c0-4838-b6d5-4110d59f78a5/BY-en-20180423-popsignuptwoweeks-perspective_alpha_website_small.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.content-wrapper {
+    padding: 30px;
+    background-color: rgba(0,0,0, 0.5);
+}
+
+.title {
+    font-size: 20px;
+    margin: 20px 0;
+    color: @red;
+    text-transform: lowercase;
+}
+
+.search-hint {
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.searchby {
+    text-transform: uppercase;
+    margin: 30px 0;
+}
+
+.filter-text {
+    color: white;
+}
+
+.searchby label {
+    display: inline-block;
+    padding: 4px 20px;
+    background-color: #3D3C3A;
+    margin-left: 20px;
+    &.checked {
+        background-color: @red;
+        color: white;
+    }
+}
+
+.searchby input {
+    display: none;
+}
+
+.search-button {
+    float: right;
+    color: white;
+    background-color: @red;
+    padding: 6px 30px;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    cursor: pointer;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+}
+
+.search-input {
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0,0,0, 0.8);
+    outline: none;
+    border: none;
+    border-bottom: 3px solid @red;
+    color: white;
+}
+
+.sortby {
+    label {
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 10px;
+        &.checked {
+            color: @red;
+        }
+    }
+
+    input {
+        display: none;
+    }
+}
+
+.no-found {
+    font-size: 40px;
+    margin-top: 100px;
+    text-align: center;
+}
+
+/* movie-item */
+.movie-item {
+    width: 30%;
+    max-width: 300px;
+    margin: 10px 1%;
+    position: relative;
+}
+
+.movie-item__img {
+    width: 100%;
+}
+
+.movie-item__genres {
+    color: @gray;
+    span {
+        display: inline-block;
+        margin-right: 8px;
+    }
+}
+
+.movie-item__release-date {
+    display: inline-block;
+    border: 1px solid @gray;
+    padding: 2px;
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.movie-item__description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-item__title {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* movies-list */
+.movies-list__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.movies-list__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* movie-page */
+.movie-page__info {
+    display: flex;
+}
+
+.movie-page__img-wrapper {
+    width: 35%;
+    max-width: 300px;
+    margin-right: 5%;
+}
+
+.movie-page__img {
+    width: 100%;
+}
+
+.movie-page__title {
+    color: @red;
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+.movie-page__description {
+    width: 60%;
+    padding: 20px;
+    color: @white;
+}
+
+.movie-page__tagline {
+    margin-bottom: 10px;
+}
+
+.movie-page__year,
+.movie-page__runtime {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.movie-page__overview {
+    margin-top: 10px;
 }

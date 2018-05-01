@@ -1,26 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../less/style';
-import Content1 from './components/content1';
-import Content2 from './components/content2';
+import { SearchForm } from './components/searchForm';
+import { MoviesList } from './components/moviesList';
+import { fetchMovies } from './actions/movies-actions';
+import { MoviePage } from './components/moviePage';
+import { ErrorBoundary } from './components/errorBoundary';
+import Footer from './components/footer';
 
 class App extends React.Component {
+    state = {
+        movies: [],
+        fetched: false
+    };
+
+    searchHandler = (params) => {
+        fetchMovies(params).then(({data: {data}}) => {
+            this.setState({
+                movies: data,
+                fetched: true
+            });
+        });
+    }
+
     render() {
         return (
-            <div className="container">
-                <Content1 />
-                <Content2 />
-            </div>
+            <ErrorBoundary>
+                <SearchForm onSearch={this.searchHandler}/>
+                {this.state.fetched && <MoviesList data={this.state.movies} /> }
+                {this.state.fetched && <MoviePage movie={this.state.movies[0]} />}
+                <Footer />
+            </ErrorBoundary>
         );
     }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-const Title = React.createElement(
-    'h1',
-    { className: 'title' },
-    'Hello world'
-);
-
-ReactDOM.render(Title , document.getElementById('title'));

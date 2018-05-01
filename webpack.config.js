@@ -17,7 +17,7 @@ module.exports = function(env, options) {
 			filename: 'bundle.js'
 		},
 
-		watch: false,
+		watch: true,
 
 		devtool: isProduction ? 'none' : 'source-map',
 
