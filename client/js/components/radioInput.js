@@ -8,13 +8,8 @@ export class RadioInput extends React.Component {
         onChange: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-        this.radio = React.createRef();
-    }
-
-    onChange = () => {
-        this.props.onChange(this.props.value);
+    onChange = (e) => {
+        this.props.onChange(e.target.value);
     }
 
     render() {
@@ -22,7 +17,7 @@ export class RadioInput extends React.Component {
 
         return (
             <label className={className}>
-                <input name={this.props.name} type="radio" ref={this.radio} onChange={this.onChange} />
+                <input name={this.props.name} type="radio" onChange={this.onChange} value={this.props.value} />
                 {this.props.text || this.props.value}
             </label>
         );

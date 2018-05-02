@@ -3,17 +3,18 @@ import { TopContainer } from './topContainer';
 import { RadioInput } from './radioInput';
 
 export class SearchForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.searchText = React.createRef();
-        this.searchRadio = React.createRef();
-    }
-
     state = {
         searchBy: 'title',
+        searchText: ''
     };
 
-    onChange = (searchBy) => {
+    onSearchTextChange = (e) => {
+        this.setState({
+            searchText: e.target.value
+        });
+    }
+
+    onRadioButtonChange = (searchBy) => {
         this.setState({
             searchBy
         });
@@ -23,7 +24,7 @@ export class SearchForm extends React.Component {
         e.preventDefault();
 
         this.props.onSearch({
-            search: this.searchText.current.value,
+            search: this.state.searchText,
             searchBy: this.state.searchBy
         });
     }
@@ -34,13 +35,13 @@ export class SearchForm extends React.Component {
             <TopContainer>
                 <form onSubmit={this.onSubmit}>
                     <div className="search-hint">Find Your movie</div>
-                    <input className="search-input" type="text" name="title" required="required" placeholder="Quentin Tarantino" ref={this.searchText}/>
+                    <input className="search-input" type="text" name="title" required="required" placeholder="Quentin Tarantino" onChange={this.onSearchTextChange}/>
 
                     <div className="form-footer">
                         <div className="searchby">
                             <span className="filter-text">Search by</span>
-                            <RadioInput value="title" name="search" onChange={this.onChange} checked={searchBy === 'title'} />
-                            <RadioInput value="genres" name="search" onChange={this.onChange} checked={searchBy === 'genres'} />
+                            <RadioInput value="title" name="search" onChange={this.onRadioButtonChange} checked={searchBy === 'title'} />
+                            <RadioInput value="genres" name="search" onChange={this.onRadioButtonChange} checked={searchBy === 'genres'} />
                         </div>
                         <input className="search-button btn" type="submit" value="search" required="required" />
                     </div>
