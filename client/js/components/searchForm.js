@@ -19,20 +19,6 @@ export class SearchForm extends React.Component {
         });
     }
 
-    componentDidMount() {
-        window.addEventListener('keyup', this.enterHandler);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('keyup', this.enterHandler);
-    }
-
-    enterHandler = (e) => {
-        if (e.keyCode === 13) {
-            this.onSubmit(e);
-        }
-    }
-
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -46,7 +32,7 @@ export class SearchForm extends React.Component {
         const { searchBy } = this.state;
         return (
             <TopContainer>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <div className="search-hint">Find Your movie</div>
                     <input className="search-input" type="text" name="title" required="required" placeholder="Quentin Tarantino" ref={this.searchText}/>
 
@@ -56,7 +42,7 @@ export class SearchForm extends React.Component {
                             <RadioInput value="title" name="search" onChange={this.onChange} checked={searchBy === 'title'} />
                             <RadioInput value="genres" name="search" onChange={this.onChange} checked={searchBy === 'genres'} />
                         </div>
-                        <input className="search-button btn" type="submit" value="search" required="required" onClick={this.onSubmit} />
+                        <input className="search-button btn" type="submit" value="search" required="required" />
                     </div>
                 </form>
             </TopContainer>
