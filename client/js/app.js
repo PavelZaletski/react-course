@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../less/style';
 import { SearchForm } from './components/searchForm';
 import { MoviesList } from './components/moviesList';
 import { fetchMovies } from './actions/movies-actions';
@@ -8,7 +7,7 @@ import { MoviePage } from './components/moviePage';
 import { ErrorBoundary } from './components/errorBoundary';
 import Footer from './components/footer';
 
-class App extends React.Component {
+export class App extends React.Component {
     state = {
         movies: [],
         fetched: false
@@ -34,5 +33,3 @@ class App extends React.Component {
         );
     }
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));

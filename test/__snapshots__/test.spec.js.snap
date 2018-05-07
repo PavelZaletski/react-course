@@ -167,7 +167,7 @@ exports[`MoviesList should match snapshot 2`] = `
 </div>
 `;
 
-exports[`TopContainer should match snapshot 1`] = `
+exports[`TopContainer should match snapshot call callback with proper param 1`] = `
 <div
   className="top-container"
 >

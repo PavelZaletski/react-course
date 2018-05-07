@@ -10,7 +10,7 @@ module.exports = function(env, options) {
 	const config = {
 		context: path.resolve(__dirname, 'client/'),
 
-		entry: './js/app',
+		entry: './main.js',
 
 		output: {
 			path: path.join(__dirname, '/public'),
