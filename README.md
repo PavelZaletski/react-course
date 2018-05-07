@@ -41,3 +41,33 @@ I created components implementing required design and used ErrorBoundary to catc
 Added components: search film form, display films, sort films by release date or by rating, etc
 
 Task finished on May, 1
+
+### Task 4
+
+I created tests using enzyme and jest, used snapshot testing.
+
+Also I added cypress and created e2e tests
+
+#### Steps to run tests
+
+* Load modules
+
+> npm install
+
+* run tests
+
+> npm run test
+
+* go to coverage folder to see tests coverage
+
+#### Steps to run e2e tests
+
+* run server
+
+> npm run server
+
+* open cypress
+
+> npm run cypress:open
+
+Task finished on May, 7

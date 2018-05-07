@@ -18,7 +18,7 @@ export class RadioInput extends React.Component {
         return (
             <label className={className}>
                 <input name={this.props.name} type="radio" onChange={this.onChange} value={this.props.value} />
-                {this.props.text || this.props.value}
+                <span>{this.props.text || this.props.value}</span>
             </label>
         );
     }
