@@ -13,5 +13,6 @@ module.exports = {
     },
     "moduleNameMapper": {
         "\\.(css|scss|svg)$": "identity-obj-proxy"
-    }
+    },
+    setupTestFrameworkScriptFile: "<rootDir>/jest/config.js",
 }

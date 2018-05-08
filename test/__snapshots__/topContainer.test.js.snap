@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopContainer should match snapshot call callback with proper param 1`] = `
+<div
+  className="top-container"
+>
+  <div
+    className="content-wrapper"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Netflixroulette
+      </div>
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="search-hint"
+        >
+          Find Your movie
+        </div>
+        <input
+          className="search-input"
+          name="title"
+          onChange={[Function]}
+          placeholder="Quentin Tarantino"
+          required="required"
+          type="text"
+        />
+        <div
+          className="form-footer"
+        >
+          <div
+            className="searchby"
+          >
+            <span
+              className="filter-text"
+            >
+              Search by
+            </span>
+            <label
+              className="checked"
+            >
+              <input
+                name="search"
+                onChange={[Function]}
+                type="radio"
+                value="title"
+              />
+              <span>
+                title
+              </span>
+            </label>
+            <label
+              className=""
+            >
+              <input
+                name="search"
+                onChange={[Function]}
+                type="radio"
+                value="genres"
+              />
+              <span>
+                genres
+              </span>
+            </label>
+          </div>
+          <input
+            className="search-button btn"
+            required="required"
+            type="submit"
+            value="search"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

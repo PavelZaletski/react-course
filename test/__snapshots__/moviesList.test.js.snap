@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesList should match snapshot 1`] = `
+<div
+  className="no-found"
+>
+  No films found
+</div>
+`;
+
+exports[`MoviesList should match snapshot 2`] = `
+<div
+  className="movies-list"
+>
+  <div
+    className="movies-list__header"
+  >
+    <span>
+      2
+       movies found
+    </span>
+    <div
+      className="sortby"
+    >
+      <span>
+        Sort by
+      </span>
+      <label
+        className="checked"
+      >
+        <input
+          name="sort"
+          onChange={[Function]}
+          type="radio"
+          value="release"
+        />
+        <span>
+          Release date
+        </span>
+      </label>
+      <label
+        className=""
+      >
+        <input
+          name="sort"
+          onChange={[Function]}
+          type="radio"
+          value="rating"
+        />
+        <span>
+          rating
+        </span>
+      </label>
+    </div>
+  </div>
+  <div
+    className="movies-list__items"
+  >
+    <div
+      className="movie-item"
+    >
+      <img
+        className="movie-item__img"
+        src={undefined}
+      />
+      <div
+        className="movie-item__description"
+      >
+        <h4
+          className="movie-item__title"
+        />
+        <span
+          className="movie-item__release-date"
+        >
+          NaN
+        </span>
+      </div>
+      <div
+        className="movie-item__genres"
+      />
+    </div>
+    <div
+      className="movie-item"
+    >
+      <img
+        className="movie-item__img"
+        src={undefined}
+      />
+      <div
+        className="movie-item__description"
+      >
+        <h4
+          className="movie-item__title"
+        />
+        <span
+          className="movie-item__release-date"
+        >
+          NaN
+        </span>
+      </div>
+      <div
+        className="movie-item__genres"
+      />
+    </div>
+  </div>
+</div>
+`;
