@@ -14,8 +14,8 @@ describe('TopContainer', () => {
         let component = shallow(<SearchForm onSearch={mockCallback} />);
 
         component.find('form').simulate('submit', eventMock);
-        expect(mockCallback.mock.calls.length).toBe(1);
-        expect(mockCallback.mock.calls[0][0]).toMatchObject({ searchBy: 'title' });
+        expect(mockCallback).toHaveBeenCalled();
+        expect(mockCallback).toHaveBeenCalledWith({search: '', searchBy: 'title' });
 
         component = renderer.create(<SearchForm />).toJSON();
 
@@ -35,9 +35,8 @@ describe('TopContainer', () => {
         component.find("input[value='genres']").simulate('change', eventMock);
 
         component.find('form').simulate('submit', eventMock);
-        expect(mockCallback.mock.calls.length).toBe(1);
-        expect(mockCallback.mock.calls[0][0]).toMatchObject({ searchBy: 'genres' });
-
+        expect(mockCallback).toHaveBeenCalled();
+        expect(mockCallback).toHaveBeenCalledWith({ search: '', searchBy: 'genres' });
     });
 
     it('should match snapshot', () => {
@@ -53,7 +52,7 @@ describe('TopContainer', () => {
         component.find(".search-input").simulate('change', eventMock);
 
         component.find('form').simulate('submit', eventMock);
-        expect(mockCallback.mock.calls.length).toBe(1);
-        expect(mockCallback.mock.calls[0][0]).toMatchObject({ search: 'test' });
+        expect(mockCallback).toHaveBeenCalled();
+        expect(mockCallback).toHaveBeenCalledWith({ search: 'test', searchBy: 'title' });
     });
 });

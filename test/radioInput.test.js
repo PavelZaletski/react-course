@@ -15,7 +15,7 @@ describe('RadioInput', () => {
         const component = shallow(<RadioInput onChange={mockCallback} name={name} value={value} />);
 
         component.find('input').simulate('change', eventMock);
-        expect(mockCallback.mock.calls.length).toBe(1);
+        expect(mockCallback).toHaveBeenCalled();
 
         const textValue = component
             .find('span')
