@@ -7,29 +7,31 @@ import { MoviePage } from './components/moviePage';
 import { ErrorBoundary } from './components/errorBoundary';
 import Footer from './components/footer';
 
-export class App extends React.Component {
-    state = {
-        movies: [],
-        fetched: false
-    };
+import { connect } from 'react-redux';
+import { store } from './store';
 
+export class AppClass extends React.Component {
     searchHandler = (params) => {
-        fetchMovies(params).then(({data: {data}}) => {
-            this.setState({
-                movies: data,
-                fetched: true
-            });
-        });
+        store.dispatch(fetchMovies(params));
     }
 
     render() {
         return (
             <ErrorBoundary>
                 <SearchForm onSearch={this.searchHandler}/>
-                {this.state.fetched && <MoviesList data={this.state.movies} /> }
-                {this.state.fetched && <MoviePage movie={this.state.movies[0]} />}
+                {this.props.fetched && <MoviesList /> }
+                {this.props.fetched && <MoviePage movie={this.props.movies[0]} />}
                 <Footer />
             </ErrorBoundary>
         );
     }
 }
+
+function mapStateToProps(store) {
+    return {
+        fetched: store.movies.fetched,
+        movies: store.movies.movies
+    }
+}
+
+export default connect(mapStateToProps)(AppClass);
