@@ -71,3 +71,9 @@ Also I added cypress and created e2e tests
 > npm run cypress:open
 
 Task finished on May, 7
+
+### Task 5
+
+I added redux to project, implemented filtering and sorting as redux actions. Also I covered new files with tests and implemented offline data storage feature.
+
+Task finished on May, 13
