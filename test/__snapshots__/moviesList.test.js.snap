@@ -2,14 +2,6 @@
 
 exports[`MoviesList should match snapshot 1`] = `
 <div
-  className="no-found"
->
-  No films found
-</div>
-`;
-
-exports[`MoviesList should match snapshot 2`] = `
-<div
   className="movies-list"
 >
   <div
@@ -26,7 +18,7 @@ exports[`MoviesList should match snapshot 2`] = `
         Sort by
       </span>
       <label
-        className="checked"
+        className=""
       >
         <input
           name="sort"
