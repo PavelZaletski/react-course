@@ -1,23 +1,32 @@
 import axios from 'axios';
 
+export const FETCH_MOVIES_FULFILLED = 'FETCH_MOVIES_FULFILLED';
+export const FETCH_MOVIES_REQUEST = 'FETCH_MOVIES_REQUEST';
+export const SORT_MOVIES = 'SORT_MOVIES';
 const url = 'http://react-cdp-api.herokuapp.com/movies'
 
-export function fetchMovies(params){
-	return function (dispatch) {
-		params.limit = 12;
-		return axios({
+export const fetchMovies = (params) => (dispatch) => {
+	dispatch(requestMovies())
+	params.limit = 12;
+
+	return axios({
 			url: url,
 			method: 'get',
 			params
 		})
-		.then((response) => {
-			dispatch({ type: 'FETCH_MOVIES_FULFILLED', payload: response.data.data });
-		});
-	}
+		.then(({data}) =>
+			dispatch(moviesFetched(data.data))
+		);
 }
 
-export function sortMovies(param) {
-	return function (dispatch) {
-		dispatch({ type: 'SORT_MOVIES', payload: param });
-	}
-}
+export const moviesFetched = (payload) => (
+	{ type: FETCH_MOVIES_FULFILLED, payload }
+);
+
+export const requestMovies = () => (
+	{ type: FETCH_MOVIES_REQUEST }
+);
+
+export const sortMovies = (payload) => (
+	{ type: SORT_MOVIES, payload }
+);

@@ -2,17 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { SearchForm } from './components/searchForm';
 import { MoviesList } from './components/moviesList';
-import { fetchMovies } from './actions/movies-actions';
+import { fetchMovies, moviesFetched } from './actions/movies-actions';
 import { MoviePage } from './components/moviePage';
 import { ErrorBoundary } from './components/errorBoundary';
 import Footer from './components/footer';
-
 import { connect } from 'react-redux';
-import { store } from './store';
 
 export class AppClass extends React.Component {
     searchHandler = (params) => {
-        store.dispatch(fetchMovies(params));
+        this.props.fetchMovies(params);
     }
 
     render() {
@@ -27,11 +25,19 @@ export class AppClass extends React.Component {
     }
 }
 
-function mapStateToProps(store) {
-    return {
-        fetched: store.movies.fetched,
-        movies: store.movies.movies
-    }
-}
+const mapStateToProps = (store) => ({
+    fetched: store.movies.fetched,
+    movies: store.movies.movies
+});
 
-export default connect(mapStateToProps)(AppClass);
+const mapDispatchToProps = (dispatch) => ({
+    fetchMovies: (params) => {
+        dispatch(fetchMovies(params))
+    },
+
+    moviesFetched: (params) => {
+        dispatch(moviesFetched(params))
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppClass);

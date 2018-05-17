@@ -10,7 +10,6 @@ export let store = createStore(reducer, initialState, middleware);
 
 export const getStore = (state) => {
     store = createStore(reducer, state, middleware);
-
     return store;
 };
 

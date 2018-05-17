@@ -5,7 +5,6 @@ import MovieNotFound from './movieNotFound';
 import { RadioInput } from './radioInput';
 import { sortMovies } from '../actions/movies-actions';
 import { connect } from 'react-redux';
-import { store } from '../store';
 
 export class MoviesListClass extends React.Component {
     static propTypes = {
@@ -13,7 +12,7 @@ export class MoviesListClass extends React.Component {
     };
 
     changeSorting = (value) => {
-        store.dispatch(sortMovies(value));
+        this.props.sortMovies(value);
     }
 
     render() {
@@ -41,11 +40,15 @@ export class MoviesListClass extends React.Component {
     }
 }
 
-function mapStateToProps(store) {
-    return {
-        sortBy: store.movies.sortBy,
-        movies: store.movies.movies
-    }
-}
+const mapStateToProps = (store) => ({
+    sortBy: store.movies.sortBy,
+    movies: store.movies.movies
+});
 
-export const MoviesList = connect(mapStateToProps)(MoviesListClass);
+const mapDispatchToProps = (dispatch) => ({
+    sortMovies: (value) => {
+        dispatch(sortMovies(value))
+    }
+});
+
+export const MoviesList = connect(mapStateToProps, mapDispatchToProps)(MoviesListClass);
