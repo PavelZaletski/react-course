@@ -1,7 +1,6 @@
 module.exports = {
     collectCoverage: true,
     collectCoverageFrom: [
-        "!client/js/actions**/*.{js,jsx}",
         "!client/js/app.js",
         "client/js/**/*.{js,jsx}",
         "!**/node_modules/**",

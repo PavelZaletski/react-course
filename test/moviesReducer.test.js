@@ -51,4 +51,16 @@ describe('moviesReducer', () => {
             ]
         });
     });
+
+    it('should mark that request started', () => {
+        const action = {
+            type: 'FETCH_MOVIES_REQUEST'
+        };
+
+        const result = moviesReducer(null, action);
+
+        expect(result).toMatchObject({
+            isFetching: true
+        });
+    });
 });
