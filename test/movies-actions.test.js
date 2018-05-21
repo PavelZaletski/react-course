@@ -22,8 +22,15 @@ describe('async actions', () => {
                 'content-type': 'application/json'
             } 
         };
+        const params = { search: 'rocky', searchBy: 'title' };
+        let url = 'http://react-cdp-api.herokuapp.com/movies?limit=12';
 
-        fetchMock.getOnce('/movies', data);
+        for (let key in params) {
+            const value = params[key];
+            url += `&${key}=${value}`;
+        }
+
+        fetchMock.getOnce(url, data);
 
         const expectedActions = [
             { type: actions.FETCH_MOVIES_REQUEST },
@@ -31,7 +38,7 @@ describe('async actions', () => {
         ];
         const store = mockStore({ movies: { movies:[] } });
 
-        return store.dispatch(actions.fetchMovies({ search: 'rocky', searchBy: 'title' })).then(() => {
+        return store.dispatch(actions.fetchMovies(params)).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
         });
     });
@@ -60,7 +67,7 @@ describe('actions', () => {
 });
 
 describe('actions', () => {
-    it('should create an action to fetch movies', () => {
+    it('should create an action to request movies', () => {
         const expectedAction = {
             type: actions.FETCH_MOVIES_REQUEST
         }

@@ -1,5 +1,3 @@
-import fetch from 'cross-fetch';
-
 export const FETCH_MOVIES_FULFILLED = 'FETCH_MOVIES_FULFILLED';
 export const FETCH_MOVIES_REQUEST = 'FETCH_MOVIES_REQUEST';
 export const SORT_MOVIES = 'SORT_MOVIES';
