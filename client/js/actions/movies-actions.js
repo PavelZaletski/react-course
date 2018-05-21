@@ -1,4 +1,4 @@
-import axios from 'axios';
+import fetch from 'cross-fetch';
 
 export const FETCH_MOVIES_FULFILLED = 'FETCH_MOVIES_FULFILLED';
 export const FETCH_MOVIES_REQUEST = 'FETCH_MOVIES_REQUEST';
@@ -7,15 +7,19 @@ const url = 'http://react-cdp-api.herokuapp.com/movies'
 
 export const fetchMovies = (params) => (dispatch) => {
 	dispatch(requestMovies())
-	params.limit = 12;
+	let urlWithParams = url + '?limit=12';
 
-	return axios({
-			url: url,
-			method: 'get',
-			params
+	for (let key in params) {
+		const value = params[key];
+		urlWithParams += `&${key}=${value}`;
+	}
+
+	return fetch(urlWithParams, {
+			method: 'get'
 		})
+		.then(res => res.json())
 		.then(({data}) =>
-			dispatch(moviesFetched(data.data))
+			dispatch(moviesFetched(data))
 		);
 }
 

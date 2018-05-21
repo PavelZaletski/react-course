@@ -1,0 +1,69 @@
+import * as actions from '../client/js/actions/movies-actions';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import fetchMock from 'fetch-mock';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+
+describe('async actions', () => {
+    afterEach(() => {
+        fetchMock.reset()
+        fetchMock.restore()
+    });
+
+    it('creates FETCH_MOVIES_FULFILLED when fetching movies has been done', () => {
+        const text = 'test';
+        const data = {
+            body: {
+                data: [text]
+            },
+            headers: {
+                'content-type': 'application/json'
+            } 
+        };
+
+        fetchMock.getOnce('/movies', data);
+
+        const expectedActions = [
+            { type: actions.FETCH_MOVIES_REQUEST },
+            { type: actions.FETCH_MOVIES_FULFILLED, payload: [text] }
+        ];
+        const store = mockStore({ movies: { movies:[] } });
+
+        return store.dispatch(actions.fetchMovies({ search: 'rocky', searchBy: 'title' })).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+        });
+    });
+});
+
+describe('actions', () => {
+    it('should create an action to fetch movies', () => {
+        const payload = 'lorem ipsum dolor';
+        const expectedAction = {
+            type: actions.FETCH_MOVIES_FULFILLED,
+            payload
+        }
+        expect(actions.moviesFetched(payload)).toEqual(expectedAction)
+    });
+});
+
+describe('actions', () => {
+    it('should create an action to sort movies', () => {
+        const payload = 'lorem ipsum';
+        const expectedAction = {
+            type: actions.SORT_MOVIES,
+            payload
+        }
+        expect(actions.sortMovies(payload)).toEqual(expectedAction)
+    });
+});
+
+describe('actions', () => {
+    it('should create an action to fetch movies', () => {
+        const expectedAction = {
+            type: actions.FETCH_MOVIES_REQUEST
+        }
+        expect(actions.requestMovies()).toEqual(expectedAction)
+    });
+});
