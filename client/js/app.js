@@ -7,37 +7,24 @@ import { MoviePage } from './components/moviePage';
 import { ErrorBoundary } from './components/errorBoundary';
 import Footer from './components/footer';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import movieSearchPage from './pages/movieSearchPage';
+import moviePage from './pages/moviePage';
 
 export class AppClass extends React.Component {
-    searchHandler = (params) => {
-        this.props.fetchMovies(params);
-    }
+
 
     render() {
         return (
             <ErrorBoundary>
-                <SearchForm onSearch={this.searchHandler}/>
-                {this.props.fetched && <MoviesList /> }
-                {this.props.fetched && <MoviePage movie={this.props.movies[0]} />}
-                <Footer />
+                <Switch>
+                    <Route path="/film/:id" component={moviePage}></Route>
+                    <Route exact path="/" component={movieSearchPage}></Route>
+                </Switch>
             </ErrorBoundary>
         );
     }
 }
 
-const mapStateToProps = (store) => ({
-    fetched: store.movies.fetched,
-    movies: store.movies.movies
-});
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchMovies: (params) => {
-        dispatch(fetchMovies(params))
-    },
-
-    moviesFetched: (params) => {
-        dispatch(moviesFetched(params))
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppClass);
+export default AppClass;

@@ -1,13 +1,19 @@
 import {
 	FETCH_MOVIES_FULFILLED,
 	FETCH_MOVIES_REQUEST,
-	SORT_MOVIES
+	SORT_MOVIES,
+	FETCH_MOVIE_FULFILLED,
+	FETCH_RELATED_MOVIES_FULFILLED 
 } from '../actions/movies-actions';
 
 let initialState = {
 	movies: [],
+	isFetching: false,
 	fetched: false,
-	sortBy: 'release'
+	sortBy: 'release',
+	selectedMovie: {},
+	selectedMovieFetched: false,
+	relatedMovies: []
 };
 
 export default function (state = initialState, action){
@@ -23,7 +29,25 @@ export default function (state = initialState, action){
 			return {
 				...state,
 				fetched: true,
+				isFetching: false,
 				movies: action.payload
+			};
+		}
+
+		case FETCH_MOVIE_FULFILLED: {
+			return {
+				...state,
+				isFetching: false,
+				selectedMovie: action.payload,
+				selectedMovieFetched: true
+			};
+		}
+
+		case FETCH_RELATED_MOVIES_FULFILLED: {
+			return {
+				...state,
+				isFetching: false,
+				relatedMovies: action.payload,
 			};
 		}
 
