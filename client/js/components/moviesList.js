@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MovieItem from './movieItem';
 import MovieNotFound from './movieNotFound';
 import { RadioInput } from './radioInput';
-import { sortMovies } from '../actions/movies-actions';
+import { sortMovies, fetchMovies, moviesFetched } from '../actions/movies-actions';
 import { connect } from 'react-redux';
 
 export class MoviesListClass extends React.Component {
@@ -15,12 +15,25 @@ export class MoviesListClass extends React.Component {
         this.props.sortMovies(value);
     }
 
+    componentDidMount() {
+        const { searchBy, query } = this.props.match.params;
+        this.props.fetchMovies({ searchBy, search: query });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const curr = this.props.match.params;
+        const prev = prevProps.match.params;
+
+        if (prev.searchBy !== curr.searchBy || prev.query !== curr.query) {
+            this.props.fetchMovies({ searchBy: curr.searchBy, search: curr.query });
+        }
+    }
+
     render() {
         const { movies, sortBy } = (this.props);
         const Items = movies.map(item => <MovieItem item={item} key={item.id}/>);
 
         return (
-            movies.length ?
             <div className="movies-list">
                 <div className="movies-list__header">
                     <span>{movies.length} movies found</span>
@@ -34,8 +47,6 @@ export class MoviesListClass extends React.Component {
                     {Items}
                 </div>
             </div>
-            :
-            <MovieNotFound />
         );
     }
 }
@@ -48,6 +59,14 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
     sortMovies: (value) => {
         dispatch(sortMovies(value))
+    },
+
+    fetchMovies: (params) => {
+        dispatch(fetchMovies(params))
+    },
+
+    moviesFetched: (params) => {
+        dispatch(moviesFetched(params))
     }
 });
 

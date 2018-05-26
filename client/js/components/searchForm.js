@@ -1,8 +1,9 @@
 import React from 'react';
 import { TopContainer } from './topContainer';
 import { RadioInput } from './radioInput';
+import { withRouter } from 'react-router';
 
-export class SearchForm extends React.Component {
+class SearchFormComponent extends React.Component {
     state = {
         searchBy: 'title',
         searchText: ''
@@ -22,11 +23,9 @@ export class SearchForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        const { searchBy, searchText } = this.state;
 
-        this.props.onSearch({
-            search: this.state.searchText,
-            searchBy: this.state.searchBy
-        });
+        this.props.history.push(`/search/${searchBy}/${searchText}`);
     }
 
     render() {
@@ -50,3 +49,5 @@ export class SearchForm extends React.Component {
         );
     }
 }
+
+export const SearchForm = withRouter(SearchFormComponent);
