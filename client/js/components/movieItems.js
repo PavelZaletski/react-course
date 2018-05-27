@@ -13,7 +13,6 @@ class MovieItems extends React.Component {
             <div className="movies-list">
                 <div className="movies-list__header">
                     <span>Films by {this.props.genre} genre</span>
-                    
                 </div>
                 <div className="movies-list__items">
                     {Items}

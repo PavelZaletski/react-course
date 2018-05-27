@@ -3,7 +3,8 @@ import {
 	FETCH_MOVIES_REQUEST,
 	SORT_MOVIES,
 	FETCH_MOVIE_FULFILLED,
-	FETCH_RELATED_MOVIES_FULFILLED 
+	FETCH_RELATED_MOVIES_FULFILLED,
+	FETCH_REJECTED
 } from '../actions/movies-actions';
 
 let initialState = {
@@ -13,7 +14,8 @@ let initialState = {
 	sortBy: 'release',
 	selectedMovie: {},
 	selectedMovieFetched: false,
-	relatedMovies: []
+	relatedMovies: [],
+	errorMessage: null
 };
 
 export default function (state = initialState, action){
@@ -30,7 +32,8 @@ export default function (state = initialState, action){
 				...state,
 				fetched: true,
 				isFetching: false,
-				movies: action.payload
+				movies: action.payload,
+				errorMessage: null
 			};
 		}
 
@@ -39,7 +42,8 @@ export default function (state = initialState, action){
 				...state,
 				isFetching: false,
 				selectedMovie: action.payload,
-				selectedMovieFetched: true
+				selectedMovieFetched: true,
+				errorMessage: null
 			};
 		}
 
@@ -48,6 +52,14 @@ export default function (state = initialState, action){
 				...state,
 				isFetching: false,
 				relatedMovies: action.payload,
+				errorMessage: null
+			};
+		}
+
+		case FETCH_REJECTED: {
+			return {
+				...state,
+				errorMessage: action.payload
 			};
 		}
 

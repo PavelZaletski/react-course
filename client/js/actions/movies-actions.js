@@ -3,7 +3,8 @@ export const FETCH_MOVIES_REQUEST = 'FETCH_MOVIES_REQUEST';
 export const SORT_MOVIES = 'SORT_MOVIES';
 export const FETCH_MOVIE_FULFILLED = 'FETCH_MOVIE_FULFILLED';
 export const FETCH_RELATED_MOVIES_FULFILLED = 'FETCH_THE_SAME_GENRE_MOVIES_FULFILLED';
-const url = 'http://react-cdp-api.herokuapp.com/movies'
+export const FETCH_REJECTED = 'FETCH_REJECTED';
+export const url = 'http://react-cdp-api.herokuapp.com/movies'
 
 export const fetchMovies = (params) => (dispatch) => {
 	dispatch(requestSent())
@@ -20,6 +21,9 @@ export const fetchMovies = (params) => (dispatch) => {
 		.then(res => res.json())
 		.then(({data}) =>
 			dispatch(moviesFetched(data))
+		)
+		.catch(err =>
+			dispatch(fetchRejected('Fetch movies error. Please, try again.'))
 		);
 }
 
@@ -34,6 +38,9 @@ export const fetchMovieById = (id) => (dispatch) => {
 		.then((data) => (
 			dispatch(fetchMoviesByGenres(data.payload.genres))
 		))
+		.catch(err =>
+			dispatch(fetchRejected('Fetch movie error. Please, try again.'))
+		);
 }
 
 export const fetchMoviesByGenres = (genres) => (dispatch) => {
@@ -42,7 +49,7 @@ export const fetchMoviesByGenres = (genres) => (dispatch) => {
 	return fetch( newUrl)
 		.then(res => res.json())
 		.then(({ data }) =>
-			dispatch(theSameGenreMoviesFetched(data))
+			dispatch(relatedFetched(data))
 		);
 }
 
@@ -62,6 +69,10 @@ export const sortMovies = (payload) => (
 	{ type: SORT_MOVIES, payload }
 );
 
-export const theSameGenreMoviesFetched = (payload) => (
+export const relatedFetched = (payload) => (
 	{ type: FETCH_RELATED_MOVIES_FULFILLED, payload }
+);
+
+export const fetchRejected = (err) => (
+	{ type: FETCH_REJECTED, payload: { errorMessage: err } }
 );

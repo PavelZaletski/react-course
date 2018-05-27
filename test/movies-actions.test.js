@@ -71,6 +71,39 @@ describe('actions', () => {
         const expectedAction = {
             type: actions.FETCH_MOVIES_REQUEST
         }
-        expect(actions.requestMovies()).toEqual(expectedAction)
+        expect(actions.requestSent()).toEqual(expectedAction)
+    });
+});
+
+describe('actions', () => {
+    it('should create an action to request movie', () => {
+        const payload = 'test';
+        const expectedAction = {
+            type: actions.FETCH_MOVIE_FULFILLED,
+            payload
+        }
+        expect(actions.movieFetched(payload)).toEqual(expectedAction)
+    });
+});
+
+describe('actions', () => {
+    it('should create an action to request related movie', () => {
+        const payload = 'test';
+        const expectedAction = {
+            type: actions.FETCH_RELATED_MOVIES_FULFILLED,
+            payload
+        }
+        expect(actions.relatedFetched(payload)).toEqual(expectedAction)
+    });
+});
+
+describe('actions', () => {
+    it('should create an action to request related movie', () => {
+        const payload = 'test';
+        const expectedAction = {
+            type: actions.FETCH_REJECTED,
+            payload: { errorMessage: payload}
+        };
+        expect(actions.fetchRejected(payload)).toEqual(expectedAction)
     });
 });

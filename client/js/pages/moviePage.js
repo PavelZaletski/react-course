@@ -6,16 +6,16 @@ import MovieItems from '../components/movieItems';
 
 export class MoviePageComponent extends React.Component {
     componentDidMount() {
-        this.props.fetchMovieById(this.props.match.params.id)
-           
+        this.props.fetchMovieById(this.props.match.params.id);
     }
 
     render() {
-        const { movie } = this.props;
+        const { movie, errorMessage } = this.props;
 
         return (
             movie ?
             <div>
+                {errorMessage && <div>{errorMessage}</div>}
                 <TopContainer>
                     <div className="movie-page__info">
                         <div className="movie-page__img-wrapper">
@@ -41,7 +41,8 @@ export class MoviePageComponent extends React.Component {
 
 const mapStateToProps = (store) => ({
     movie: store.movies.selectedMovie,
-    fetched: store.movies.selectedMovieFetched
+    fetched: store.movies.selectedMovieFetched,
+    errorMessage: store.movies.errorMessage
 });
 
 const mapDispatchToProps = (dispatch) => ({

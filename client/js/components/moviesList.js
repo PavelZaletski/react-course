@@ -16,44 +16,52 @@ export class MoviesListClass extends React.Component {
     }
 
     componentDidMount() {
-        const { searchBy, query } = this.props.match.params;
-        this.props.fetchMovies({ searchBy, search: query });
+        if (this.props.match) {
+            const { searchBy, query } = this.props.match.params;
+            this.props.fetchMovies({ searchBy, search: query });
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const curr = this.props.match.params;
-        const prev = prevProps.match.params;
-
-        if (prev.searchBy !== curr.searchBy || prev.query !== curr.query) {
-            this.props.fetchMovies({ searchBy: curr.searchBy, search: curr.query });
+        if(this.props.match) {
+            const curr = this.props.match.params;
+            const prev = prevProps.match.params;
+    
+            if (prev.searchBy !== curr.searchBy || prev.query !== curr.query) {
+                this.props.fetchMovies({ searchBy: curr.searchBy, search: curr.query });
+            }
         }
     }
 
     render() {
-        const { movies, sortBy } = (this.props);
+        const { movies, sortBy, errorMessage } = (this.props);
         const Items = movies.map(item => <MovieItem item={item} key={item.id}/>);
 
         return (
-            <div className="movies-list">
-                <div className="movies-list__header">
-                    <span>{movies.length} movies found</span>
-                    <div className="sortby">
-                        <span>Sort by</span>
-                        <RadioInput value="release" name="sort" text="Release date" onChange={this.changeSorting} checked={sortBy === 'release'}/>
-                        <RadioInput value="rating" name="sort" onChange={this.changeSorting} checked={sortBy === 'rating'} />
+            errorMessage ?
+                <div>{errorMessage}</div>
+            :
+                <div className="movies-list">
+                    <div className="movies-list__header">
+                        <span>{movies.length} movies found</span>
+                        <div className="sortby">
+                            <span>Sort by</span>
+                            <RadioInput value="release" name="sort" text="Release date" onChange={this.changeSorting} checked={sortBy === 'release'}/>
+                            <RadioInput value="rating" name="sort" onChange={this.changeSorting} checked={sortBy === 'rating'} />
+                        </div>
+                    </div>
+                    <div className="movies-list__items">
+                        {Items}
                     </div>
                 </div>
-                <div className="movies-list__items">
-                    {Items}
-                </div>
-            </div>
         );
     }
 }
 
 const mapStateToProps = (store) => ({
     sortBy: store.movies.sortBy,
-    movies: store.movies.movies
+    movies: store.movies.movies,
+    errorMessage: store.movies.errorMessage
 });
 
 const mapDispatchToProps = (dispatch) => ({

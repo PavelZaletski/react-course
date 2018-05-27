@@ -51,10 +51,16 @@ exports[`MoviesList should match snapshot 1`] = `
     <div
       className="movie-item"
     >
-      <img
-        className="movie-item__img"
-        src={undefined}
-      />
+      <a
+        className="btn btn-default"
+        href="/film/1"
+        onClick={[Function]}
+      >
+        <img
+          className="movie-item__img"
+          src={undefined}
+        />
+      </a>
       <div
         className="movie-item__description"
       >
@@ -74,10 +80,16 @@ exports[`MoviesList should match snapshot 1`] = `
     <div
       className="movie-item"
     >
-      <img
-        className="movie-item__img"
-        src={undefined}
-      />
+      <a
+        className="btn btn-default"
+        href="/film/2"
+        onClick={[Function]}
+      >
+        <img
+          className="movie-item__img"
+          src={undefined}
+        />
+      </a>
       <div
         className="movie-item__description"
       >
