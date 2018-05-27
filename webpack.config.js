@@ -14,7 +14,8 @@ module.exports = function(env, options) {
 
 		output: {
 			path: path.join(__dirname, '/public'),
-			filename: 'bundle.js'
+			filename: 'bundle.js',
+			publicPath: '/'
 		},
 
 		watch: true,
@@ -55,7 +56,8 @@ module.exports = function(env, options) {
 		devServer: {
 			host: 'localhost',
 			port: 8080,
-			hot: true
+			hot: true,
+			historyApiFallback: true
 		}
 	};
 
