@@ -18,6 +18,8 @@ module.exports = function(env, options) {
 			publicPath: '/'
 		},
 
+		mode: 'development',
+
 		watch: true,
 
 		devtool: isProduction ? 'none' : 'source-map',

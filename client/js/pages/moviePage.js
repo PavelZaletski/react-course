@@ -11,6 +11,7 @@ export class MoviePageComponent extends React.Component {
 
     render() {
         const { movie, errorMessage } = this.props;
+        let genre = movie && movie.genres && movie.genres[0];
 
         return (
             movie ?
@@ -31,7 +32,7 @@ export class MoviePageComponent extends React.Component {
                     </div>
                 </TopContainer>
 
-                <MovieItems genre={movie.genres[0]}/>
+                <MovieItems genre={genre}/>
             </div>
             :
             null
