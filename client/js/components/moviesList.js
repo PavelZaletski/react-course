@@ -17,8 +17,8 @@ export class MoviesListClass extends React.Component {
 
     componentDidMount() {
         if (this.props.match) {
-            const { searchBy, query } = this.props.match.params;
-            this.props.fetchMovies({ searchBy, search: query });
+            const { search } = this.props.match.params;
+            this.props.fetchMovies({ search, searchBy: this.props.searchBy });
         }
     }
 
@@ -27,8 +27,8 @@ export class MoviesListClass extends React.Component {
             const curr = this.props.match.params;
             const prev = prevProps.match.params;
     
-            if (prev.searchBy !== curr.searchBy || prev.query !== curr.query) {
-                this.props.fetchMovies({ searchBy: curr.searchBy, search: curr.query });
+            if (prev.search !== curr.search || prevProps.searchBy !== this.props.searchBy) {
+                this.props.fetchMovies({ search: curr.search, searchBy: this.props.searchBy });
             }
         }
     }
@@ -61,7 +61,8 @@ export class MoviesListClass extends React.Component {
 const mapStateToProps = (store) => ({
     sortBy: store.movies.sortBy,
     movies: store.movies.movies,
-    errorMessage: store.movies.errorMessage
+    errorMessage: store.movies.errorMessage,
+    searchBy: store.movies.searchBy
 });
 
 const mapDispatchToProps = (dispatch) => ({

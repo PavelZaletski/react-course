@@ -4,7 +4,8 @@ import {
 	SORT_MOVIES,
 	FETCH_MOVIE_FULFILLED,
 	FETCH_RELATED_MOVIES_FULFILLED,
-	FETCH_REJECTED
+	FETCH_REJECTED,
+	SEARCH_BY
 } from '../actions/movies-actions';
 
 let initialState = {
@@ -15,7 +16,8 @@ let initialState = {
 	selectedMovie: {},
 	selectedMovieFetched: false,
 	relatedMovies: [],
-	errorMessage: null
+	errorMessage: null,
+	searchBy: 'title'
 };
 
 export default function (state = initialState, action){
@@ -78,6 +80,13 @@ export default function (state = initialState, action){
 				...state,
 				movies: [...state.movies].sort(sortFunc),
 				sortBy
+			};
+		}
+
+		case SEARCH_BY: {
+			return {
+				...state,
+				searchBy: action.payload
 			};
 		}
 	}

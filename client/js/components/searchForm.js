@@ -2,6 +2,8 @@ import React from 'react';
 import { TopContainer } from './topContainer';
 import { RadioInput } from './radioInput';
 import { withRouter } from 'react-router';
+import { changeSearchBy } from '../actions/movies-actions';
+import { connect } from 'react-redux';
 
 class SearchFormComponent extends React.Component {
     state = {
@@ -16,20 +18,18 @@ class SearchFormComponent extends React.Component {
     }
 
     onRadioButtonChange = (searchBy) => {
-        this.setState({
-            searchBy
-        });
+        this.props.changeSearchBy(searchBy);
     }
 
     onSubmit = (e) => {
         e.preventDefault();
         const { searchBy, searchText } = this.state;
 
-        this.props.history.push(`/search/${searchBy}/${searchText}`);
+        this.props.history.push(`/search/${searchText}`);
     }
 
     render() {
-        const { searchBy } = this.state;
+        const { searchBy } = this.props;
         return (
             <TopContainer>
                 <form onSubmit={this.onSubmit}>
@@ -50,4 +50,14 @@ class SearchFormComponent extends React.Component {
     }
 }
 
-export const SearchForm = withRouter(SearchFormComponent);
+const mapStateToProps = (store) => ({
+    searchBy: store.movies.searchBy
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    changeSearchBy: (value) => {
+        dispatch(changeSearchBy(value))
+    }
+});
+
+export const SearchForm = withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent));

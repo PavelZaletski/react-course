@@ -4,6 +4,7 @@ export const SORT_MOVIES = 'SORT_MOVIES';
 export const FETCH_MOVIE_FULFILLED = 'FETCH_MOVIE_FULFILLED';
 export const FETCH_RELATED_MOVIES_FULFILLED = 'FETCH_THE_SAME_GENRE_MOVIES_FULFILLED';
 export const FETCH_REJECTED = 'FETCH_REJECTED';
+export const SEARCH_BY = 'SEARCH_BY';
 export const url = 'http://react-cdp-api.herokuapp.com/movies'
 
 export const fetchMovies = (params) => (dispatch) => {
@@ -75,4 +76,8 @@ export const relatedFetched = (payload) => (
 
 export const fetchRejected = (err) => (
 	{ type: FETCH_REJECTED, payload: { errorMessage: err } }
+);
+
+export const changeSearchBy = (payload) => (
+	{ type: SEARCH_BY, payload }
 );
