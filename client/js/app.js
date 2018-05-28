@@ -6,7 +6,7 @@ import { fetchMovies, moviesFetched } from './actions/movies-actions';
 import { ErrorBoundary } from './components/errorBoundary';
 import Footer from './components/footer';
 
-export class App extends React.Component {
+export default class App extends React.Component {
     render() {
         return (
             < ErrorBoundary>
@@ -17,6 +17,5 @@ export class App extends React.Component {
     }
 }
 
-export default App
 
 

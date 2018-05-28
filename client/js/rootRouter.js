@@ -11,14 +11,16 @@ import MovieSearchPage from './pages/movieSearchPage';
 import MoviePage from './pages/moviePage';
 import NotFound from './pages/NotFound';
 import App from './app';
+import { MovieNotFoundPage } from './pages/movieNotFoundPage';
 
-export class AppClass extends React.Component {
+export default class RootRouter extends React.Component {
     render() {
         return (
             <App>
                 <Switch>
                     <Route path="/film/:id" component={MoviePage}></Route>
-                    <Route path="/" component={MovieSearchPage}></Route>
+                    <Route path="/search/:search" component={MovieSearchPage}></Route>
+                    <Route exact path="/" component={MovieNotFoundPage}></Route>
                     <Route path="*" component={NotFound}></Route>
                 </Switch>
             </App>
@@ -26,4 +28,3 @@ export class AppClass extends React.Component {
     }
 }
 
-export default AppClass;

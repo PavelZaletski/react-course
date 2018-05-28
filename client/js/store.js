@@ -6,7 +6,7 @@ import reducer from './reducers';
 const middleware = applyMiddleware(promise(), thunk);
 const initialState = window.localStorage && JSON.parse(localStorage.getItem('state')) || {};
 
-export let store = createStore(reducer, initialState, middleware);
+export let store = createStore(reducer, {}, middleware);
 
 export const getStore = (state) => {
     store = createStore(reducer, state, middleware);

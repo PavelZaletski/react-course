@@ -16,16 +16,16 @@ export class MoviesListClass extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.match) {
-            const { search } = this.props.match.params;
+        if (this.props.urlParams) {
+            const { search } = this.props.urlParams;
             this.props.fetchMovies({ search, searchBy: this.props.searchBy });
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(this.props.match) {
-            const curr = this.props.match.params;
-            const prev = prevProps.match.params;
+        if (this.props.urlParams) {
+            const curr = this.props.urlParams;
+            const prev = prevProps.urlParams;
     
             if (prev.search !== curr.search || prevProps.searchBy !== this.props.searchBy) {
                 this.props.fetchMovies({ search: curr.search, searchBy: this.props.searchBy });

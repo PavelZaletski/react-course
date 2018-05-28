@@ -3,6 +3,7 @@ import { TopContainer } from '../components/topContainer';
 import { connect } from 'react-redux';
 import { fetchMovieById, fetchMoviesByGenres } from '../actions/movies-actions';
 import MovieItems from '../components/movieItems';
+import { Link } from 'react-router-dom';
 
 export class MoviePageComponent extends React.Component {
     componentDidMount() {
@@ -28,6 +29,7 @@ export class MoviePageComponent extends React.Component {
                             <span className="movie-page__year">{new Date(movie.release_date).getFullYear()}</span>
                             {movie.runtime && <span className="movie-page__runtime">{`${movie.runtime} min`}</span>}
                             <div className="movie-page__overview"> {movie.overview}</div>
+                            <Link className="home-btn" to='/' >Search</Link>
                         </div>
                     </div>
                 </TopContainer>

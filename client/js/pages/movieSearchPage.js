@@ -9,10 +9,7 @@ class movieSearchPage extends React.Component {
         return (
             <div>
                 <SearchForm onSearch={this.searchHandler} />
-                <Switch>
-                    <Route path="/search/:searchBy/:query" component={MoviesList}></Route>
-                    <Route path="/" component={MovieNotFound}></Route>
-                </Switch>
+                <MoviesList urlParams={this.props.match.params}/>
             </div>
         );
     }
