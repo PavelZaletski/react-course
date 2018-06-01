@@ -77,3 +77,9 @@ Task finished on May, 7
 I added redux to project, implemented filtering and sorting as redux actions. Also I covered new files with tests and implemented offline data storage feature.
 
 Task finished on May, 13
+
+### Task 6
+
+I added router in app, created 404 page and implemented some improvements in components
+
+Task finished on May, 28
