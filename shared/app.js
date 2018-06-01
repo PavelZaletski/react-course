@@ -9,7 +9,7 @@ import Footer from './components/footer';
 export default class App extends React.Component {
     render() {
         return (
-            < ErrorBoundary>
+            <ErrorBoundary>
                 <div>{this.props.children}</div>
                 <Footer />
             </ErrorBoundary>
