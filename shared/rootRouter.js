@@ -1,17 +1,34 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { SearchForm } from './components/searchForm';
-import { MoviesList } from './components/moviesList';
-import { fetchMovies, moviesFetched } from './actions/movies-actions';
 import { ErrorBoundary } from './components/errorBoundary';
-import Footer from './components/footer';
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import MovieSearchPage from './pages/movieSearchPage';
-import MoviePage from './pages/moviePage';
+// import MoviePage from './pages/moviePage';
 import NotFound from './pages/NotFound';
 import App from './app';
 import { MovieNotFoundPage } from './pages/movieNotFoundPage';
+import Loadable from 'react-loadable';
+
+const Loading = () => <div>Loading...</div>;
+
+const MoviePage = Loadable({
+    loader: () => import('./pages/moviePage'),
+    loading: Loading,
+});
+
+// const MovieSearchPage = Loadable({
+//     loader: () => import('./pages/movieSearchPage'),
+//     loading: Loading,
+// });
+
+// const MovieNotFoundPage = Loadable({
+//     loader: () => import('./pages/movieNotFoundPage'),
+//     loading: Loading,
+// });
+
+// const NotFound = Loadable({
+//     loader: () => import('./pages/NotFound'),
+//     loading: Loading,
+// });
 
 export default class RootRouter extends React.Component {
     render() {
@@ -27,4 +44,3 @@ export default class RootRouter extends React.Component {
         );
     }
 }
-

@@ -3,8 +3,11 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Root from '../shared/root';
 import { getStore } from '../shared/store';
+import Loadable from 'react-loadable';
+import stats from '../public/react-loadable.json';
 
-function renderHTML(html, preloadedState) {
+
+function renderHTML(html, preloadedState, bundles) {
   return `
       <!doctype html>
       <html>
@@ -20,6 +23,10 @@ function renderHTML(html, preloadedState) {
             // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
             window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
           </script>
+          <script src="/manifest.js"></script>
+            ${bundles.map(bundle => {
+            return `<script src="/${bundle.file}"></script>`
+          }).join('\n')}
           <script src="/bundle.js"></script>
         </body>
       </html>
@@ -31,14 +38,18 @@ export default function serverRenderer() {
     const store = getStore();
     // This context object contains the results of the render
     const context = {};
+    let modules = [];
+    let bundles = getBundles(stats, modules);
 
     const root = (
-      <Root
-        context={context}
-        location={req.url}
-        Router={StaticRouter}
-        store={store}
-      />
+      <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+        <Root
+          context={context}
+          location={req.url}
+          Router={StaticRouter}
+          store={store}
+        />
+      </Loadable.Capture>
     );
 
     // context.url will contain the URL to redirect to if a <Redirect> was used
@@ -56,7 +67,7 @@ export default function serverRenderer() {
 
       const preloadedState = store.getState();
 
-      res.send(renderHTML(htmlString, preloadedState));
+      res.send(renderHTML(htmlString, preloadedState, bundles));
     });
 
     // Do first render, starts initial actions.

@@ -29,6 +29,14 @@ module.exports = function(env, options) {
 			extractLESS,
 		],
 
+		optimization: {
+			splitChunks: {
+				minChunks: Infinity,
+				name: 'manifest',
+			},
+		},
+		
+
 		resolve: {
 			extensions: ['.js', '.less']
 		},
