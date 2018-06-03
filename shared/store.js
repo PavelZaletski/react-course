@@ -1,13 +1,20 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
-import reducer from './reducers';
+import reducer, { rootSaga} from './reducers';
+import createSagaMiddleware, { END } from 'redux-saga';
 
-const middleware = applyMiddleware(promise(), thunk);
 
-export let store = createStore(reducer, {}, middleware);
+const sagaMiddleware = createSagaMiddleware();
 
-export const getStore = (state = {}) => {
-    store = createStore(reducer, state, middleware);
+export const getStore = (initialState) => {
+    const store = createStore(reducer, initialState, applyMiddleware(sagaMiddleware));
+    
+    sagaMiddleware.run(rootSaga);
+    store.runSaga = () => sagaMiddleware.run(rootSaga);
+    store.close = () => store.dispatch(END);
+    
     return store;
 };
+
+export let store = getStore();

@@ -15,9 +15,11 @@ export class MoviesListClass extends React.Component {
         this.props.sortMovies(value);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         if (this.props.urlParams) {
-            const { search } = this.props.urlParams;
+            let { search } = this.props.urlParams;
+            search = search.replace('-', ' ');
+
             this.props.fetchMovies({ search, searchBy: this.props.searchBy });
         }
     }
@@ -74,9 +76,6 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(fetchMovies(params))
     },
 
-    moviesFetched: (params) => {
-        dispatch(moviesFetched(params))
-    }
 });
 
 export const MoviesList = connect(mapStateToProps, mapDispatchToProps)(MoviesListClass);

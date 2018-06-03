@@ -5,10 +5,10 @@ const serverRenderer = require('./serverRenderer').default;
 app.use(express.static('public'));
 app.use(serverRenderer());
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.info(`Express listening on port ${port}`); // eslint-disable-line
+  console.info(`Express listening on port ${port}`);
 });
 
 export default app;

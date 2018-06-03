@@ -23,7 +23,8 @@ class SearchFormComponent extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const { searchBy, searchText } = this.state;
+        let { searchText } = this.state;
+        searchText = searchText.replace(' ', '-');
 
         this.props.history.push(`/search/${searchText}`);
     }

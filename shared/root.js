@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+import 'isomorphic-fetch';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';

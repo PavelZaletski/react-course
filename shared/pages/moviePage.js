@@ -6,7 +6,7 @@ import MovieItems from '../components/movieItems';
 import { Link } from 'react-router-dom';
 
 export class MoviePageComponent extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.fetchMovieById(this.props.match.params.id);
     }
 
@@ -26,7 +26,7 @@ export class MoviePageComponent extends React.Component {
                         <div className="movie-page__description">
                             <h2 className="movie-page__title">{movie.title}</h2>
                             <div className="movie-page__tagline"> {movie.tagline}</div>
-                            <span className="movie-page__year">{new Date(movie.release_date).getFullYear()}</span>
+                            <span className="movie-page__year">{new Date(movie.release_date).getFullYear().toString()}</span>
                             {movie.runtime && <span className="movie-page__runtime">{`${movie.runtime} min`}</span>}
                             <div className="movie-page__overview"> {movie.overview}</div>
                             <Link className="home-btn" to='/' >Search</Link>
@@ -34,7 +34,7 @@ export class MoviePageComponent extends React.Component {
                     </div>
                 </TopContainer>
 
-                <MovieItems genre={genre}/>
+                {genre && <MovieItems genre={genre}/> }
             </div>
             :
             null

@@ -27,11 +27,6 @@ module.exports = function(env, options) {
 		plugins: [
 			new webpack.HotModuleReplacementPlugin(),
 			extractLESS,
-			new HtmlWebpackPlugin({
-				title: 'React app',
-				hash: true,
-				template: './index.html'
-			})
 		],
 
 		resolve: {
