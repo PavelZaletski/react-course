@@ -5,7 +5,6 @@ export const SORT_MOVIES = 'SORT_MOVIES';
 export const FETCH_MOVIE_FULFILLED = 'FETCH_MOVIE_FULFILLED';
 export const FETCH_RELATED_MOVIES_FULFILLED = 'FETCH_THE_SAME_GENRE_MOVIES_FULFILLED';
 export const FETCH_REJECTED = 'FETCH_REJECTED';
-export const FETCH_RELATED_MOVIES_REQUEST = 'FETCH_RELATED_MOVIES_REQUEST';
 export const SEARCH_BY = 'SEARCH_BY';
 export const url = 'http://react-cdp-api.herokuapp.com/movies';
 import { call, put, all, takeLatest } from 'redux-saga/effects';
@@ -62,11 +61,6 @@ export const movieFetched = (payload) => (
 	{ type: FETCH_MOVIE_FULFILLED, payload }
 );
 
-export const requestSent = (_params) => {
-	params = _params;
-	return { type: FETCH_MOVIES_REQUEST };
-}
-
 export const fetchMovies = (_params) => {
 	params = _params;
 	return { type: FETCH_MOVIES_REQUEST };
@@ -80,14 +74,6 @@ export const fetchMovieById = (_id) => {
 export const sortMovies = (payload) => (
 	{ type: SORT_MOVIES, payload }
 );
-
-export const relatedFetched = (payload) => (
-	{ type: FETCH_RELATED_MOVIES_FULFILLED, payload }
-);
-
-export const fetchRelated = (_genre) => {
-	return { type: FETCH_RELATED_MOVIES_REQUEST };
-}
 
 export const fetchRejected = (err) => (
 	{ type: FETCH_REJECTED, payload: { errorMessage: err } }

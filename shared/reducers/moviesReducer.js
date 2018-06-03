@@ -2,10 +2,8 @@ import {
 	FETCH_MOVIES_FULFILLED,
 	FETCH_MOVIES_REQUEST,
 	FETCH_MOVIE_REQUEST,
-	FETCH_RELATED_MOVIES_REQUEST,
 	SORT_MOVIES,
 	FETCH_MOVIE_FULFILLED,
-	FETCH_RELATED_MOVIES_FULFILLED,
 	FETCH_REJECTED,
 	SEARCH_BY
 } from '../actions/movies-actions';
@@ -25,7 +23,6 @@ let initialState = {
 export default function (state = initialState, action){
 	switch(action.type){
 		case FETCH_MOVIE_REQUEST:
-		case FETCH_RELATED_MOVIES_REQUEST:
 		case FETCH_MOVIES_REQUEST: {
 			return {
 				...state,
@@ -52,15 +49,6 @@ export default function (state = initialState, action){
 				selectedMovieFetched: true,
 				errorMessage: null,
 				relatedMovies: action.payload.relatedMovies
-			};
-		}
-
-		case FETCH_RELATED_MOVIES_FULFILLED: {
-			return {
-				...state,
-				isFetching: false,
-				relatedMovies: action.payload,
-				errorMessage: null
 			};
 		}
 
