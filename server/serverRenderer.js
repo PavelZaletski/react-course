@@ -5,6 +5,7 @@ import Root from '../shared/root';
 import { getStore } from '../shared/store';
 import Loadable from 'react-loadable';
 import stats from '../public/react-loadable.json';
+import { getBundles } from 'react-loadable/webpack';
 
 
 function renderHTML(html, preloadedState, bundles) {

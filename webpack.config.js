@@ -3,6 +3,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractLESS = new ExtractTextPlugin('style.css');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
 
 module.exports = function(env, options) {
 	const isProduction = options.mode === 'production';
@@ -27,6 +28,9 @@ module.exports = function(env, options) {
 		plugins: [
 			new webpack.HotModuleReplacementPlugin(),
 			extractLESS,
+			new ReactLoadablePlugin({
+				filename: './public/react-loadable.json',
+			}),
 		],
 
 		optimization: {
