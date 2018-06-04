@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MovieItem from './movieItem';
-import MovieNotFound from './movieNotFound';
 import { RadioInput } from './radioInput';
-import { sortMovies, fetchMovies, moviesFetched } from '../actions/movies-actions';
+import { sortMovies, fetchMovies } from '../actions/movies-actions';
 import { connect } from 'react-redux';
 
 export class MoviesListClass extends React.Component {

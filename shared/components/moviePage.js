@@ -2,10 +2,6 @@ import React from 'react';
 import { TopContainer } from './topContainer';
 
 export class MoviePage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { movie } = this.props;
 

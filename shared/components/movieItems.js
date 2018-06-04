@@ -1,8 +1,6 @@
 import React from 'react';
-import { TopContainer } from './topContainer';
 import MovieItem from './movieItem';
 import { connect } from 'react-redux';
-import { fetchMovieById, fetchMoviesByGenres } from '../actions/movies-actions';
 
 class MovieItems extends React.Component {
     render() {
