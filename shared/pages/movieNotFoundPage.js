@@ -6,7 +6,7 @@ import { fetchMovieById, fetchMoviesByGenres } from '../actions/movies-actions';
 import MovieItems from '../components/movieItems';
 import { SearchForm } from '../components/searchForm';
 
-export class MovieNotFoundPage extends React.Component {
+export default class MovieNotFoundPage extends React.Component {
     render() {
         return (
             <div>

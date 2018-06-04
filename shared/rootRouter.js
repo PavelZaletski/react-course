@@ -1,11 +1,6 @@
 import React from 'react';
-import { ErrorBoundary } from './components/errorBoundary';
 import { Route, Switch } from 'react-router-dom';
-// import MovieSearchPage from './pages/movieSearchPage';
-// import MoviePage from './pages/moviePage';
-import NotFound from './pages/NotFound';
 import App from './app';
-import { MovieNotFoundPage } from './pages/movieNotFoundPage';
 import Loadable from 'react-loadable';
 
 const Loading = () => <div>Loading...</div>;
@@ -20,15 +15,15 @@ const MovieSearchPage = Loadable({
     loading: Loading,
 });
 
-// const MovieNotFoundPage = Loadable({
-//     loader: () => import('./pages/movieNotFoundPage'),
-//     loading: Loading,
-// });
+const MovieNotFoundPage = Loadable({
+    loader: () => import('./pages/movieNotFoundPage'),
+    loading: Loading,
+});
 
-// const NotFound = Loadable({
-//     loader: () => import('./pages/NotFound'),
-//     loading: Loading,
-// });
+const NotFound = Loadable({
+    loader: () => import('./pages/NotFound'),
+    loading: Loading,
+});
 
 export default class RootRouter extends React.Component {
     render() {

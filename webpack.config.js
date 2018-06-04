@@ -34,9 +34,12 @@ module.exports = function(env, options) {
 		],
 
 		optimization: {
+			runtimeChunk: {
+				name: 'manifest',
+			},
 			splitChunks: {
 				minChunks: Infinity,
-				name: 'manifest',
+				name: true,
 			},
 		},
 		
