@@ -24,7 +24,6 @@ function renderHTML(html, preloadedState, bundles) {
             // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
             window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
           </script>
-          <script src="/manifest.js"></script>
             ${bundles.map(bundle => {
             return `<script src="/${bundle.file}"></script>`
           }).join('\n')}
@@ -52,9 +51,7 @@ export default function serverRenderer() {
       </Loadable.Capture>
     );
 
-    renderToString(root);
-
-    let bundles = getBundles(stats, modules);
+    
 
     // context.url will contain the URL to redirect to if a <Redirect> was used
     store.runSaga().done.then(() => {
@@ -73,6 +70,10 @@ export default function serverRenderer() {
 
       res.send(renderHTML(htmlString, preloadedState, bundles));
     });
+
+    renderToString(root);
+
+    let bundles = getBundles(stats, modules);
 
     // When the first render is finished, send the END action to redux-saga.
     store.close();

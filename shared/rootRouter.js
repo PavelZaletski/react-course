@@ -1,7 +1,7 @@
 import React from 'react';
 import { ErrorBoundary } from './components/errorBoundary';
 import { Route, Switch } from 'react-router-dom';
-import MovieSearchPage from './pages/movieSearchPage';
+// import MovieSearchPage from './pages/movieSearchPage';
 // import MoviePage from './pages/moviePage';
 import NotFound from './pages/NotFound';
 import App from './app';
@@ -15,10 +15,10 @@ const MoviePage = Loadable({
     loading: Loading,
 });
 
-// const MovieSearchPage = Loadable({
-//     loader: () => import('./pages/movieSearchPage'),
-//     loading: Loading,
-// });
+const MovieSearchPage = Loadable({
+    loader: () => import('./pages/movieSearchPage'),
+    loading: Loading,
+});
 
 // const MovieNotFoundPage = Loadable({
 //     loader: () => import('./pages/movieNotFoundPage'),
