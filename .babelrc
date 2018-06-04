@@ -3,6 +3,7 @@
     "plugins": [
         "transform-class-properties",
         "transform-object-rest-spread",
-        "react-loadable/babel"
+        "react-loadable/babel",
+        "dynamic-import-node"
     ]
 }

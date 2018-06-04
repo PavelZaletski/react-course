@@ -40,7 +40,6 @@ export default function serverRenderer() {
     // This context object contains the results of the render
     const context = {};
     let modules = [];
-    let bundles = getBundles(stats, modules);
 
     const root = (
       <Loadable.Capture report={moduleName => modules.push(moduleName)}>
@@ -49,9 +48,13 @@ export default function serverRenderer() {
           location={req.url}
           Router={StaticRouter}
           store={store}
-        />
+          />
       </Loadable.Capture>
     );
+
+    renderToString(root);
+
+    let bundles = getBundles(stats, modules);
 
     // context.url will contain the URL to redirect to if a <Redirect> was used
     store.runSaga().done.then(() => {
@@ -71,8 +74,6 @@ export default function serverRenderer() {
       res.send(renderHTML(htmlString, preloadedState, bundles));
     });
 
-    // Do first render, starts initial actions.
-    renderToString(root);
     // When the first render is finished, send the END action to redux-saga.
     store.close();
   };

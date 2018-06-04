@@ -41,7 +41,6 @@ export default function (state = initialState, action){
 		}
 
 		case FETCH_MOVIE_FULFILLED: {
-			console.log(action.payload);
 			return {
 				...state,
 				isFetching: false,

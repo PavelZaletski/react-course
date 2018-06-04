@@ -5,7 +5,7 @@
     "start": "webpack-dev-server",
     "dev": "webpack --mode development",
     "prod": "webpack --mode production",
-    "server": "node --experimental-modules starter.js",
+    "server": "babel-node starter.js",
     "test": "jest",
     "cypress:open": "cypress open",
     "wds": "webpack-dev-server"
@@ -30,6 +30,7 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
