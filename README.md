@@ -83,3 +83,9 @@ Task finished on May, 13
 I added router in app, created 404 page and implemented some improvements in components
 
 Task finished on May, 28
+
+### Task 7
+
+I  implemented SSR, added  react-loadable for code splitting and created route masking
+
+Task finished on June 5

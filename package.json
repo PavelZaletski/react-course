@@ -5,7 +5,7 @@
     "start": "webpack-dev-server",
     "dev": "webpack --mode development",
     "prod": "webpack --mode production",
-    "server": "babel-node starter.js",
+    "server": "./node_modules/.bin/babel-node starter.js",
     "test": "jest",
     "cypress:open": "cypress open",
     "wds": "webpack-dev-server"
@@ -25,6 +25,7 @@
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
