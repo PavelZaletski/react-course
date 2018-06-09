@@ -1,13 +1,13 @@
 import React from 'react';
-import MovieItem from './movieItem';
 import { connect } from 'react-redux';
+import MovieItem from './movieItem';
 
 class MovieItems extends React.Component {
-    render() {
-        const { relatedMovies } = this.props;
-        const Items = relatedMovies && relatedMovies.map(item => <MovieItem item={item} key={item.id} />);
+  render() {
+    const { relatedMovies } = this.props;
+    const Items = relatedMovies && relatedMovies.map(item => <MovieItem item={item} key={item.id} />);
 
-        return (
+    return (
             <div className="movies-list">
                 <div className="movies-list__header">
                     <span>Films by {this.props.genre} genre</span>
@@ -16,12 +16,12 @@ class MovieItems extends React.Component {
                     {Items}
                 </div>
             </div>
-        );
-    }
+    );
+  }
 }
 
-const mapStateToProps = (store) => ({
-    relatedMovies: store.movies.relatedMovies
+const mapStateToProps = store => ({
+  relatedMovies: store.movies.relatedMovies,
 });
 
 export default connect(mapStateToProps)(MovieItems);

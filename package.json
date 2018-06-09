@@ -8,7 +8,8 @@
     "server": "./node_modules/.bin/babel-node starter.js",
     "test": "jest",
     "cypress:open": "cypress open",
-    "wds": "webpack-dev-server"
+    "wds": "webpack-dev-server",
+    "lint": "eslint ./shared --cache --ignore-pattern .gitignore --fix"
   },
   "dependencies": {
     "babel-preset-stage-3": "^6.24.1",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-dynamic-import-node": "^1.2.0",
@@ -41,6 +43,11 @@
     "cypress": "^2.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fetch-mock": "^6.4.2",
     "html-webpack-plugin": "^3.2.0",

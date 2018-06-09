@@ -3,14 +3,13 @@ import MovieNotFound from '../components/movieNotFound';
 import { SearchForm } from '../components/searchForm';
 
 export default class MovieNotFoundPage extends React.Component {
-    render() {
-        return (
+  render() {
+    return (
             <div>
                 <SearchForm />
                 <MovieNotFound />
             </div>
-        );
-    }
+    );
+  }
 }
-
 

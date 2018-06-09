@@ -5,11 +5,11 @@ import movies from './moviesReducer';
 import { moviesSaga } from '../actions/movies-actions';
 
 export function* rootSaga() {
-	yield all([
-		moviesSaga(),
-	]);
+  yield all([
+    moviesSaga(),
+  ]);
 }
 
 export default combineReducers({
-	movies
+  movies,
 });

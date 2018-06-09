@@ -2,11 +2,11 @@ import React from 'react';
 import { TopContainer } from './topContainer';
 
 export class MoviePage extends React.Component {
-    render() {
-        const { movie } = this.props;
+  render() {
+    const { movie } = this.props;
 
-        return (
-            movie ?
+    return (
+      movie ?
                 <TopContainer>
                     <div className="movie-page__info">
                         <div className="movie-page__img-wrapper">
@@ -21,8 +21,8 @@ export class MoviePage extends React.Component {
                         </div>
                     </div>
                 </TopContainer>
-            :
-            null
-        );
-    }
+        :
+        null
+    );
+  }
 }

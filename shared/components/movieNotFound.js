@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default function () {
-    return (
+  return (
         <div className="no-found">
             No films found
         </div>
-    );
+  );
 }

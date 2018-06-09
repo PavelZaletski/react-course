@@ -1,33 +1,33 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import App from './app';
 import Loadable from 'react-loadable';
+import App from './app';
 
 const Loading = () => <div>Loading...</div>;
 
 const MoviePage = Loadable({
-    loader: () => import('./pages/moviePage'),
-    loading: Loading,
+  loader: () => import('./pages/moviePage'),
+  loading: Loading,
 });
 
 const MovieSearchPage = Loadable({
-    loader: () => import('./pages/movieSearchPage'),
-    loading: Loading,
+  loader: () => import('./pages/movieSearchPage'),
+  loading: Loading,
 });
 
 const MovieNotFoundPage = Loadable({
-    loader: () => import('./pages/movieNotFoundPage'),
-    loading: Loading,
+  loader: () => import('./pages/movieNotFoundPage'),
+  loading: Loading,
 });
 
 const NotFound = Loadable({
-    loader: () => import('./pages/NotFound'),
-    loading: Loading,
+  loader: () => import('./pages/NotFound'),
+  loading: Loading,
 });
 
 export default class RootRouter extends React.Component {
-    render() {
-        return (
+  render() {
+    return (
             <App>
                 <Switch>
                     <Route path="/film/:id" component={MoviePage}></Route>
@@ -36,6 +36,6 @@ export default class RootRouter extends React.Component {
                     <Route path="*" component={NotFound}></Route>
                 </Switch>
             </App>
-        );
-    }
+    );
+  }
 }

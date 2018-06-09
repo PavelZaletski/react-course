@@ -1,21 +1,21 @@
 import React from 'react';
-import { TopContainer } from '../components/topContainer';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { TopContainer } from '../components/topContainer';
 import { fetchMovieById, fetchMoviesByGenres } from '../actions/movies-actions';
 import MovieItems from '../components/movieItems';
-import { Link } from 'react-router-dom';
 
 export class MoviePageComponent extends React.Component {
-    componentWillMount() {
-        this.props.fetchMovieById(this.props.match.params.id);
-    }
+  componentWillMount() {
+    this.props.fetchMovieById(this.props.match.params.id);
+  }
 
-    render() {
-        const { movie, errorMessage } = this.props;
-        let genre = movie && movie.genres && movie.genres[0];
+  render() {
+    const { movie, errorMessage } = this.props;
+    const genre = movie && movie.genres && movie.genres[0];
 
-        return (
-            movie ?
+    return (
+      movie ?
             <div>
                 {errorMessage && <div>{errorMessage}</div>}
                 <TopContainer>
@@ -26,7 +26,9 @@ export class MoviePageComponent extends React.Component {
                         <div className="movie-page__description">
                             <h2 className="movie-page__title">{movie.title}</h2>
                             <div className="movie-page__tagline"> {movie.tagline}</div>
-                            <span className="movie-page__year">{new Date(movie.release_date).getFullYear().toString()}</span>
+                            <span className="movie-page__year">
+                              {new Date(movie.release_date).getFullYear().toString()}
+                            </span>
                             {movie.runtime && <span className="movie-page__runtime">{`${movie.runtime} min`}</span>}
                             <div className="movie-page__overview"> {movie.overview}</div>
                             <Link className="home-btn" to='/' >Search</Link>
@@ -36,26 +38,26 @@ export class MoviePageComponent extends React.Component {
 
                 {genre && <MovieItems genre={genre}/> }
             </div>
-            :
-            null
-        );
-    }
+        :
+        null
+    );
+  }
 }
 
-const mapStateToProps = (store) => ({
-    movie: store.movies.selectedMovie,
-    fetched: store.movies.selectedMovieFetched,
-    errorMessage: store.movies.errorMessage
+const mapStateToProps = store => ({
+  movie: store.movies.selectedMovie,
+  fetched: store.movies.selectedMovieFetched,
+  errorMessage: store.movies.errorMessage,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchMovieById: (id) => {
-        dispatch(fetchMovieById(id))
-    },
+const mapDispatchToProps = dispatch => ({
+  fetchMovieById: (id) => {
+    dispatch(fetchMovieById(id));
+  },
 
-    fetchMoviesByGenres: (genres) => {
-        dispatch(fetchMoviesByGenres(genres))
-    }
+  fetchMoviesByGenres: (genres) => {
+    dispatch(fetchMoviesByGenres(genres));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePageComponent);

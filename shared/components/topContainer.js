@@ -1,8 +1,8 @@
 import React from 'react';
 
 export class TopContainer extends React.Component {
-    render() {
-        return (
+  render() {
+    return (
             <div className="top-container" >
                 <div className="content-wrapper">
                     <div className="content">
@@ -11,6 +11,6 @@ export class TopContainer extends React.Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+    );
+  }
 }

@@ -1,3 +1,5 @@
+import { call, put, all, takeLatest } from 'redux-saga/effects';
+
 export const FETCH_MOVIES_FULFILLED = 'FETCH_MOVIES_FULFILLED';
 export const FETCH_MOVIES_REQUEST = 'FETCH_MOVIES_REQUEST';
 export const FETCH_MOVIE_REQUEST = 'FETCH_MOVIE_REQUEST';
@@ -7,78 +9,77 @@ export const FETCH_RELATED_MOVIES_FULFILLED = 'FETCH_THE_SAME_GENRE_MOVIES_FULFI
 export const FETCH_REJECTED = 'FETCH_REJECTED';
 export const SEARCH_BY = 'SEARCH_BY';
 export const url = 'http://react-cdp-api.herokuapp.com/movies';
-import { call, put, all, takeLatest } from 'redux-saga/effects';
 
 let params;
 let id;
 
+export const moviesFetched = payload => (
+  { type: FETCH_MOVIES_FULFILLED, payload }
+);
+
+export const movieFetched = payload => (
+  { type: FETCH_MOVIE_FULFILLED, payload }
+);
+
 export function* fetchMoviesAsync() {
-	let urlWithParams = url + '?limit=12';
+  let urlWithParams = `${url}?limit=12`;
 
-	for (let key in params) {
-		const value = params[key];
-		urlWithParams += `&${key}=${value}`;
-	}
+  for (const key in params) {
+    const value = params[key];
+    urlWithParams += `&${key}=${value}`;
+  }
 
-	const response = yield call(fetch, urlWithParams);
-	const movies = yield response.json();
+  const response = yield call(fetch, urlWithParams);
+  const movies = yield response.json();
 
-	yield put(moviesFetched(movies.data));
+  yield put(moviesFetched(movies.data));
 }
 
 export function* watchFetchMovies() {
-	yield takeLatest(FETCH_MOVIES_REQUEST, fetchMoviesAsync);
+  yield takeLatest(FETCH_MOVIES_REQUEST, fetchMoviesAsync);
 }
 
 export function* fetchMovieByIdAsync() {
-	const response = yield call(fetch, `${url}/${id}`);
-	const movie = yield response.json();
+  const response = yield call(fetch, `${url}/${id}`);
+  const movie = yield response.json();
 
-	const newUrl = url + '?limit=12&searchBy=genres&search=' + movie.genres[0]
-	
-	const response2 = yield call(fetch, newUrl);
-	const relatedMovies = yield response2.json();
+  const newUrl = `${url}?limit=12&searchBy=genres&search=${movie.genres[0]}`;
 
-	yield put(movieFetched({ movie, relatedMovies: relatedMovies.data}));
+  const response2 = yield call(fetch, newUrl);
+  const relatedMovies = yield response2.json();
+
+  yield put(movieFetched({ movie, relatedMovies: relatedMovies.data }));
 }
 
 export function* watchFetchMovieById() {
-	yield takeLatest(FETCH_MOVIE_REQUEST, fetchMovieByIdAsync);
+  yield takeLatest(FETCH_MOVIE_REQUEST, fetchMovieByIdAsync);
 }
 
 export function* moviesSaga() {
-	yield all([
-		watchFetchMovies(),
-		watchFetchMovieById()
-	]);
+  yield all([
+    watchFetchMovies(),
+    watchFetchMovieById(),
+  ]);
 }
-
-export const moviesFetched = (payload) => (
-	{ type: FETCH_MOVIES_FULFILLED, payload }
-);
-
-export const movieFetched = (payload) => (
-	{ type: FETCH_MOVIE_FULFILLED, payload }
-);
 
 export const fetchMovies = (_params) => {
-	params = _params;
-	return { type: FETCH_MOVIES_REQUEST };
-}
+  params = _params;
+  return { type: FETCH_MOVIES_REQUEST };
+};
 
 export const fetchMovieById = (_id) => {
-	id = _id;
-	return { type: FETCH_MOVIE_REQUEST };
-}
+  id = _id;
+  return { type: FETCH_MOVIE_REQUEST };
+};
 
-export const sortMovies = (payload) => (
-	{ type: SORT_MOVIES, payload }
+export const sortMovies = payload => (
+  { type: SORT_MOVIES, payload }
 );
 
-export const fetchRejected = (err) => (
-	{ type: FETCH_REJECTED, payload: { errorMessage: err } }
+export const fetchRejected = err => (
+  { type: FETCH_REJECTED, payload: { errorMessage: err } }
 );
 
-export const changeSearchBy = (payload) => (
-	{ type: SEARCH_BY, payload }
+export const changeSearchBy = payload => (
+  { type: SEARCH_BY, payload }
 );
