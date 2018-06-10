@@ -1,11 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { getBundles } from 'react-loadable/webpack';
+import Loadable from 'react-loadable';
 import Root from '../shared/root';
 import { getStore } from '../shared/store';
-import Loadable from 'react-loadable';
 import stats from '../public/react-loadable.json';
-import { getBundles } from 'react-loadable/webpack';
 
 
 function renderHTML(html, preloadedState, bundles) {
@@ -24,9 +24,7 @@ function renderHTML(html, preloadedState, bundles) {
             // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
             window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
           </script>
-            ${bundles.map(bundle => {
-            return `<script src="/${bundle.file}"></script>`
-          }).join('\n')}
+            ${bundles.map(bundle => `<script src="/${bundle.file}"></script>`).join('\n')}
           <script src="/bundle.js"></script>
         </body>
       </html>
@@ -38,7 +36,7 @@ export default function serverRenderer() {
     const store = getStore();
     // This context object contains the results of the render
     const context = {};
-    let modules = [];
+    const modules = [];
 
     const root = (
       <Loadable.Capture report={moduleName => modules.push(moduleName)}>
@@ -51,7 +49,6 @@ export default function serverRenderer() {
       </Loadable.Capture>
     );
 
-    
 
     // context.url will contain the URL to redirect to if a <Redirect> was used
     store.runSaga().done.then(() => {

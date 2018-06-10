@@ -19,7 +19,7 @@ const styles = {
     border: 'none',
     outline: 'none',
     textTransform: 'uppercase',
-  }
+  },
 };
 
 type Props = {

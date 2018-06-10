@@ -1,7 +1,9 @@
+import Loadable from 'react-loadable';
+
 const express = require('express');
+
 const app = express();
 const serverRenderer = require('./serverRenderer').default;
-import Loadable from 'react-loadable';
 
 app.use(express.static('public'));
 app.use(serverRenderer());

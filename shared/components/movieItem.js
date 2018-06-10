@@ -47,6 +47,6 @@ const movieItem = function ({ item, classes }: Props) {
           <div className="movie-item__genres">{Genres}</div>
         </div>
   );
-}
+};
 
 export default injectSheet(styles)(movieItem);
