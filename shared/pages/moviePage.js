@@ -1,11 +1,23 @@
+// @flow
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TopContainer } from '../components/topContainer';
 import { fetchMovieById, fetchMoviesByGenres } from '../actions/movies-actions';
 import MovieItems from '../components/movieItems';
+import { Movie } from '../types/movie';
 
-export class MoviePageComponent extends React.Component {
+type Props = {
+  match: any,
+  movie: Movie,
+  fetchMovieById: (value: number) => void,
+  fetchMoviesByGenres: (value: string) => void,
+  errorMessage: string,
+  fetched: boolean
+};
+
+export class MoviePageComponent extends React.Component<Props> {
   componentWillMount() {
     this.props.fetchMovieById(this.props.match.params.id);
   }

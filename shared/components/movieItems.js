@@ -1,8 +1,16 @@
+// @flow
+
 import React from 'react';
 import { connect } from 'react-redux';
 import MovieItem from './movieItem';
+import { Movie } from '../types/movie';
 
-class MovieItems extends React.Component {
+type Props = {
+  relatedMovies: Movie[],
+  genre: string
+};
+
+class MovieItems extends React.Component<Props> {
   render() {
     const { relatedMovies } = this.props;
     const Items = relatedMovies && relatedMovies.map(item => <MovieItem item={item} key={item.id} />);

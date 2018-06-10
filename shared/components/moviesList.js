@@ -1,16 +1,29 @@
+// @flow
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieItem from './movieItem';
-import { RadioInput } from './radioInput';
+import RadioInput from './radioInput';
 import { sortMovies, fetchMovies } from '../actions/movies-actions';
+import { Movie } from '../types/movie';
 
-export class MoviesListClass extends React.Component {
+type Props = {
+  movies: Movie[],
+  sortMovies: (value: string) => void,
+  fetchMovies: ({search: string, searchBy: string}) => void,
+  sortBy: string,
+  searchBy: string,
+  errorMessage: string,
+  urlParams: {search: string}
+};
+
+export class MoviesListClass extends React.Component<Props> {
     static propTypes = {
       movies: PropTypes.array,
     };
 
-    changeSorting = (value) => {
+    changeSorting = (value: string) => {
       this.props.sortMovies(value);
     }
 
@@ -23,7 +36,7 @@ export class MoviesListClass extends React.Component {
       }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: Props) {
       if (this.props.urlParams) {
         const curr = this.props.urlParams;
         const prev = prevProps.urlParams;

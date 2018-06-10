@@ -1,7 +1,8 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export class RadioInput extends React.Component {
+export default class RadioInput extends React.Component {
     static propTypes = {
       name: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,

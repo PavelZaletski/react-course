@@ -9,15 +9,21 @@
     "test": "jest",
     "cypress:open": "cypress open",
     "wds": "webpack-dev-server",
-    "lint": "eslint ./shared --cache --ignore-pattern .gitignore --fix"
+    "lint": "eslint ./shared --cache --ignore-pattern .gitignore --fix",
+    "flow": "flow",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "babel-preset-stage-3": "^6.24.1",
     "express": "^4.16.3",
+    "jss": "^9.8.2",
+    "jss-preset-default": "^4.5.0",
     "less": "^3.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-jss": "^8.5.0",
     "react-loadable": "^5.4.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
@@ -36,6 +42,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
@@ -50,6 +57,7 @@
     "eslint-plugin-react": "^7.9.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fetch-mock": "^6.4.2",
+    "flow-bin": "^0.74.0",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
@@ -61,6 +69,11 @@
     "style-loader": "^0.21.0",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
-    "webpack-dev-server": "^3.1.3"
+    "webpack-dev-server": "^3.1.3",
+    "@storybook/react": "^3.4.6",
+    "@storybook/addon-actions": "^3.4.6",
+    "@storybook/addon-links": "^3.4.6",
+    "@storybook/addons": "^3.4.6",
+    "babel-runtime": "^6.26.0"
   }
 }

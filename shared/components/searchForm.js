@@ -1,11 +1,40 @@
+// @flow
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { TopContainer } from './topContainer';
-import { RadioInput } from './radioInput';
+import RadioInput from './radioInput';
 import { changeSearchBy } from '../actions/movies-actions';
+import injectSheet from 'react-jss';
 
-class SearchFormComponent extends React.Component {
+const styles = {
+  button: {
+    float: 'right',
+    color: 'white',
+    backgroundColor: '#F25264',
+    padding: '6px 30px',
+    cursor: 'pointer',
+    borderRadius: '2px',
+    border: 'none',
+    outline: 'none',
+    textTransform: 'uppercase',
+  }
+};
+
+type Props = {
+  searchBy: number,
+  classes: any,
+  history: any,
+  changeSearchBy: (str: string) => void
+};
+
+type State = {
+  searchBy: string,
+  searchText: string
+};
+
+class SearchFormComponent extends React.Component<Props, State> {
     state = {
       searchBy: 'title',
       searchText: '',
@@ -30,7 +59,7 @@ class SearchFormComponent extends React.Component {
     }
 
     render() {
-      const { searchBy } = this.props;
+      const { searchBy, classes } = this.props;
       return (
             <TopContainer>
                 <form onSubmit={this.onSubmit}>
@@ -59,7 +88,7 @@ class SearchFormComponent extends React.Component {
                               checked={searchBy === 'genres'}
                             />
                         </div>
-                        <input className="search-button btn" type="submit" value="search" required="required" />
+                        <input className={classes.button} type="submit" value="search" required="required" />
                     </div>
                 </form>
             </TopContainer>
@@ -77,4 +106,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export const SearchForm = withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent));
+export const SearchForm = injectSheet(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent)));

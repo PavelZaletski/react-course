@@ -1,3 +1,5 @@
+import { List } from 'immutable';
+
 import {
   FETCH_MOVIES_FULFILLED,
   FETCH_MOVIES_REQUEST,
@@ -9,13 +11,13 @@ import {
 } from '../actions/movies-actions';
 
 const initialState = {
-  movies: [],
+  movies: List(),
   isFetching: false,
   fetched: false,
   sortBy: 'release',
   selectedMovie: {},
   selectedMovieFetched: false,
-  relatedMovies: [],
+  relatedMovies: List(),
   errorMessage: null,
   searchBy: 'title',
 };
@@ -35,7 +37,7 @@ export default function (state = initialState, action) {
         ...state,
         fetched: true,
         isFetching: false,
-        movies: action.payload,
+        movies: List(action.payload),
         errorMessage: null,
       };
     }
@@ -47,7 +49,7 @@ export default function (state = initialState, action) {
         selectedMovie: action.payload.movie,
         selectedMovieFetched: true,
         errorMessage: null,
-        relatedMovies: action.payload.relatedMovies,
+        relatedMovies: List(action.payload.relatedMovies),
       };
     }
 
@@ -71,7 +73,7 @@ export default function (state = initialState, action) {
 
       return {
         ...state,
-        movies: [...state.movies].sort(sortFunc),
+        movies: List(state.movies.sort(sortFunc)),
         sortBy,
       };
     }

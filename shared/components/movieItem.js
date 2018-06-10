@@ -1,7 +1,14 @@
+// @flow
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Movie } from '../types/movie';
 
-export default function ({ item }) {
+type Props = {
+  item: Movie
+}
+
+export default function ({item}: Props) {
   const Genres = item.genres.map(genre => <span key={genre}>{genre}</span>);
 
   return (
