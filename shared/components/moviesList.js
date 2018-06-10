@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieItem from './movieItem';
 import RadioInput from './radioInput';
@@ -19,10 +18,6 @@ type Props = {
 };
 
 export class MoviesListClass extends React.Component<Props> {
-    static propTypes = {
-      movies: PropTypes.array,
-    };
-
     changeSorting = (value: string) => {
       this.props.sortMovies(value);
     }

@@ -1,14 +1,7 @@
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export default class RadioInput extends React.Component {
-    static propTypes = {
-      name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      onChange: PropTypes.func.isRequired,
-    };
-
     onChange = (e) => {
       this.props.onChange(e.target.value);
     }

@@ -6,7 +6,7 @@ import MovieItem from '../shared/components/movieItem';
 import { Provider } from 'react-redux';
 import { getStore } from '../shared/store';
 import { BrowserRouter } from 'react-router-dom';
-
+import { SearchForm } from '../shared/components/SearchForm';
 
 storiesOf('Footer', module)
     .add('Footer', () => (
@@ -20,6 +20,15 @@ storiesOf('MovieItem', module)
         <Provider store={store}>
             <BrowserRouter>
                 <MovieItem item={{ title: 'test', genres: ['comedy'], release_date: Date.now() }} />
+            </BrowserRouter>
+        </Provider>
+    ));
+
+storiesOf('SearchForm', module)
+    .add('SearchForm', () => (
+        <Provider store={store}>
+            <BrowserRouter>
+                <SearchForm />
             </BrowserRouter>
         </Provider>
     ));
