@@ -6,7 +6,7 @@ import MovieItem from '../shared/components/movieItem';
 import { Provider } from 'react-redux';
 import { getStore } from '../shared/store';
 import { BrowserRouter } from 'react-router-dom';
-import { SearchForm } from '../shared/components/SearchForm';
+import { SearchForm } from '../shared/components/searchForm';
 
 storiesOf('Footer', module)
     .add('Footer', () => (
