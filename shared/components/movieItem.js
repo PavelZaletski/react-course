@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Movie } from '../types/movie';
 import injectSheet from 'react-jss';
+import { Movie } from '../types/movie';
 
 const styles = {
   img: {

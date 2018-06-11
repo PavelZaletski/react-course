@@ -3,10 +3,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import injectSheet from 'react-jss';
 import { TopContainer } from './topContainer';
 import RadioInput from './radioInput';
 import { changeSearchBy } from '../actions/movies-actions';
-import injectSheet from 'react-jss';
 
 const styles = {
   button: {
@@ -106,4 +106,5 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export const SearchForm = injectSheet(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent)));
+export const SearchForm = 
+  injectSheet(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent)));
