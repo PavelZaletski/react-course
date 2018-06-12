@@ -61,7 +61,6 @@ export default function (state = initialState, action) {
     }
 
     case SORT_MOVIES: {
-      let movies;
       const sortBy = action.payload;
       let sortFunc;
 

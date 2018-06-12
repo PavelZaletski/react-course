@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class TopContainer extends React.Component {
+export default class TopContainer extends React.Component {
   render() {
     return (
             <div className="top-container" >

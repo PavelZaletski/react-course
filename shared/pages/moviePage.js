@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { TopContainer } from '../components/topContainer';
+import TopContainer from '../components/topContainer';
 import { fetchMovieById, fetchMoviesByGenres } from '../actions/movies-actions';
 import MovieItems from '../components/movieItems';
 import { Movie } from '../types/movie';
@@ -18,7 +18,8 @@ type Props = {
 };
 
 export class MoviePageComponent extends React.Component<Props> {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.props.fetchMovieById(this.props.match.params.id);
   }
 

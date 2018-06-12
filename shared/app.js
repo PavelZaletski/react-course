@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorBoundary } from './components/errorBoundary';
+import ErrorBoundary from './components/errorBoundary';
 import Footer from './components/footer';
 
 export default class App extends React.Component {

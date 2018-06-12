@@ -18,17 +18,17 @@ type Props = {
 };
 
 export class MoviesListClass extends React.Component<Props> {
-    changeSorting = (value: string) => {
-      this.props.sortMovies(value);
-    }
-
-    componentWillMount() {
+    constructor(props) {
+      super(props);
       if (this.props.urlParams) {
         let { search } = this.props.urlParams;
         search = search.replace('-', ' ');
 
         this.props.fetchMovies({ search, searchBy: this.props.searchBy });
       }
+    }
+    changeSorting = (value: string) => {
+      this.props.sortMovies(value);
     }
 
     componentDidUpdate(prevProps: Props) {

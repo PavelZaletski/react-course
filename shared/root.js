@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
 import RootRouter from './rootRouter';
 
-export default ({
+const Root = ({
   Router, location, context, store,
 }) => (
     <Provider store={store}>
@@ -14,3 +14,4 @@ export default ({
     </Provider>
 );
 
+export default Root;

@@ -3,24 +3,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import injectSheet from 'react-jss';
-import { TopContainer } from './topContainer';
+import TopContainer from './topContainer';
 import RadioInput from './radioInput';
 import { changeSearchBy } from '../actions/movies-actions';
-
-const styles = {
-  button: {
-    float: 'right',
-    color: 'white',
-    backgroundColor: '#F25264',
-    padding: '6px 30px',
-    cursor: 'pointer',
-    borderRadius: '2px',
-    border: 'none',
-    outline: 'none',
-    textTransform: 'uppercase',
-  },
-};
 
 type Props = {
   searchBy: number,
@@ -88,7 +73,7 @@ class SearchFormComponent extends React.Component<Props, State> {
                               checked={searchBy === 'genres'}
                             />
                         </div>
-                        <input className={classes.button} type="submit" value="search" required="required" />
+              <input className="search-button btn" type="submit" value="search" required="required" />
                     </div>
                 </form>
             </TopContainer>
@@ -106,5 +91,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export const SearchForm = 
-  injectSheet(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent));

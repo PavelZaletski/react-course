@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchForm } from '../components/searchForm';
+import SearchForm from '../components/searchForm';
 import { MoviesList } from '../components/moviesList';
 
 class movieSearchPage extends React.Component {
