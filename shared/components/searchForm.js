@@ -44,7 +44,7 @@ class SearchFormComponent extends React.Component<Props, State> {
     }
 
     render() {
-      const { searchBy, classes } = this.props;
+      const { searchBy } = this.props;
       return (
             <TopContainer>
                 <form onSubmit={this.onSubmit}>
