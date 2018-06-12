@@ -30,9 +30,9 @@ const styles = {
 type Props = {
   item: Movie,
   classes: any
-}
+};
 
-const movieItem = function ({ item, classes }: Props) {
+export const MovieItemComponent = function ({ item, classes }: Props) {
   const Genres = item.genres.map(genre => <span key={genre}>{genre}</span>);
 
   return (
@@ -49,4 +49,4 @@ const movieItem = function ({ item, classes }: Props) {
   );
 };
 
-export default injectSheet(styles)(movieItem);
+export default injectSheet(styles)(MovieItemComponent);

@@ -18,7 +18,7 @@ type Props = {
 };
 
 export class MoviePageComponent extends React.Component<Props> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.props.fetchMovieById(this.props.match.params.id);
   }

@@ -18,7 +18,7 @@ type Props = {
 };
 
 export class MoviesListClass extends React.Component<Props> {
-    constructor(props) {
+    constructor(props: Props) {
       super(props);
       if (this.props.urlParams) {
         let { search } = this.props.urlParams;
